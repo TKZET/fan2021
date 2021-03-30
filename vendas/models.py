@@ -15,8 +15,26 @@ class Venda(models.Model):
     email_cliente = models.EmailField(blank=True, null=True)
     venda_concluida = models.BooleanField(blank=False, null=False)
     quantidade_itens = models.IntegerField(blank=True, null=False)
+    produtos = models.ManyToManyField('Produto')
+    cliente = models.ForeignKey('Cliente', on_delete=models.DO_NOTHING, default=1)
 
-    def _str_(self):
+
+    def __str__(self):
         return str(self.pk)+ '-' + self.nome
 
 
+class Produto(models.Model):
+    nome = models.CharField(max_length=255, blank=False, null=False)
+    tipo = models.CharField(max_length=255, blank=False, null=False)
+    Valor = models.DecimalField(max_digits=6, decimal_places=2, blank=False, null=False)
+
+    def __str__(self):
+        return self.nome + '. R$: ' + str(self.Valor)
+
+
+class Cliente(models.Model):
+    nome = models.CharField(max_length=255, blank=False, null=False)
+    cpf = models.CharField(max_length=11, blank=False, null=False)
+
+    def __str__(self):
+        return self.nome
