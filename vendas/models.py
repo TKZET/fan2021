@@ -26,10 +26,10 @@ class Venda(models.Model):
 class Produto(models.Model):
     nome = models.CharField(max_length=255, blank=False, null=False)
     tipo = models.CharField(max_length=255, blank=False, null=False)
-    Valor = models.DecimalField(max_digits=6, decimal_places=2, blank=False, null=False)
+    valor = models.DecimalField(max_digits=6, decimal_places=2, blank=False, null=False)
 
     def __str__(self):
-        return self.nome + '. R$: ' + str(self.Valor)
+        return self.nome + '. R$: ' + str(self.valor)
 
 
 class Cliente(models.Model):
