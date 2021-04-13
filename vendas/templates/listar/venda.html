@@ -1,0 +1,39 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+    <h1>Página de listagem de venda</h1>
+    {{ object_list }}
+    <table>
+    {% for obj_venda in object_list %}
+        <tr>
+            <td><b>ID:</b> {{obj_venda.pk}}</td>
+            <td><b>Nome:</b> {{obj_venda.nome}}</td>
+            <td><b>Valor:</b> {{obj_venda.valor}}</td>
+            <td><b>Data da Venda:</b> {{obj_venda.data_venda}}</td>
+            <td><b>Cliente:</b> {{obj_venda.cliente}}</td>
+        </tr>
+    {% empty %}
+        <h3>Desculpe, você ainda nao possui vendas cadastradas em seu sistema.
+            <br/>:'(</h3>
+    {% endfor %}
+    </table>
+
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; Primeira Página |</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Página Anterior </a>
+                {% endif %}
+
+                <span class="current">
+                    | Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}. |
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Próxima Página</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">| Última Página &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}
