@@ -1,20 +1,32 @@
 {% extends 'admin/base.html' %}
 {% block content %}
     <h1>Página de listagem de venda</h1>
-    {{ object_list }}
+    <a href="{% url 'cadastrar_venda' %}">CADASTRAR VENDA</a>
+
     <table>
+        <thead>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>VALOR</th>
+            <th>DATA DA VENDA</th>
+            <th>CLIENTE</th>
+            <th>AÇÕES</th>
+        </thead>
+        <tbody>
     {% for obj_venda in object_list %}
         <tr>
-            <td><b>ID:</b> {{obj_venda.pk}}</td>
-            <td><b>Nome:</b> {{obj_venda.nome}}</td>
-            <td><b>Valor:</b> {{obj_venda.valor}}</td>
-            <td><b>Data da Venda:</b> {{obj_venda.data_venda}}</td>
-            <td><b>Cliente:</b> {{obj_venda.cliente}}</td>
-        </tr>
+                <td>{{obj_venda.pk}}</td>
+                <td>{{obj_venda.nome}}</td>
+                <td>{{obj_venda.valor}}</td>
+                <td>{{obj_venda.data_venda}}</td>
+                <td>{{obj_venda.cliente}}</td>
+                <td><a href="{% url 'atualizar_venda' obj_venda.pk %}">ATUALIZAR</a></td>
+            </tr>
     {% empty %}
         <h3>Desculpe, você ainda nao possui vendas cadastradas em seu sistema.
             <br/>:'(</h3>
     {% endfor %}
+        </tbody>
     </table>
 
     {% if is_paginated %}

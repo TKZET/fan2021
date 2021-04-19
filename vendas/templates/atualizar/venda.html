@@ -1,0 +1,11 @@
+{% extends 'admin/base.html' %}
+{% load bootstrap %}
+{% block title %} Atualizar Vendas {% endblock %}
+{% block content  %}
+    <h1>Meu site de Vendas</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <input type="submit" value="Atualizar">
+    </form>
+{% endblock %}
