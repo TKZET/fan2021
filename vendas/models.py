@@ -13,8 +13,8 @@ class Venda(models.Model):
     observacao = models.TextField(blank=True, null=True, verbose_name='Observação')
     comprovante_venda = models.FileField(blank=True, null=True, verbose_name='Comprovante de venda')
     exemplo_upload = models.FileField(upload_to='outro_diretorio/', null=True, blank=True)
-    venda_concluida = models.BooleanField(blank=False, null=False)
-    quantidade_itens = models.IntegerField(blank=True, null=False, verbose_name='Quantidade de Itens')
+    venda_concluida = models.BooleanField(blank=False, null=False, default=True)
+    quantidade_itens = models.IntegerField(blank=True, null=False, default=True, verbose_name='Quantidade de Itens')
     produtos = models.ManyToManyField('Produto')
     cliente = models.ForeignKey('Cliente', on_delete=models.DO_NOTHING, default=1)
 

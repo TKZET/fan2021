@@ -6,7 +6,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|bootstrap }}
-        <a class="btn btn-warning" href="{% url 'listar_venda' %}">Voltar</a>
+        <a href="{% url 'listar_venda' %}">Voltar</a>
         <input type="submit" value="Atualizar">
     </form>
 {% endblock %}
